@@ -43,6 +43,9 @@ public class UserAuthServiceImpl implements UserAuthService {
     @Override
     public ApiResponse<UserResponseDto> registerUser(UserSignupDto signupDto) {
         validateSignupDetails(signupDto);
+        if (userRepository.findByEmail(signupDto.getEmail()).isPresent()) {
+            throw new DataValidationException("Email already exist");
+        }
         signupDto.setPassword(passwordEncoder.encode(signupDto.getPassword()));
         UserEntity userEntity = UserMapper.INSTANCE.fromDtoToEntity(signupDto);
         userEntity.setRoles(Roles.USER.name());
