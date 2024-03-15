@@ -7,6 +7,7 @@ import com.oasis.taskmanagement.dtos.responseDtos.UserResponseDto;
 import com.oasis.taskmanagement.enums.Roles;
 import com.oasis.taskmanagement.exception.AuthenticationException;
 import com.oasis.taskmanagement.exception.DataValidationException;
+import com.oasis.taskmanagement.exception.ResourceNotFoundException;
 import com.oasis.taskmanagement.mappers.UserMapper;
 import com.oasis.taskmanagement.model.UserEntity;
 import com.oasis.taskmanagement.repositories.UserRepository;
@@ -66,7 +67,8 @@ public class UserAuthServiceImpl implements UserAuthService {
 
     @Override
     public ApiResponse<String> loginUser(UserLoginDto loginDto) {
-
+        userRepository.findByEmail(loginDto.getEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("User does not exist"));
         try {
             Authentication authentication = auth.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())

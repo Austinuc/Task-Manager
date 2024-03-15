@@ -60,8 +60,8 @@ public class GlobalExceptionHandler {
     private ResponseEntity<ApiResponse<String>> handleResourceNotFoundException(ResourceNotFoundException ex){
         logger.error(ex.getMessage());
         return  ResponseEntity
-                .notFound()
-                .build();
+                .badRequest()
+                .body(new ApiResponse<>(ex.getMessage(), false,null));
     }
 
 
