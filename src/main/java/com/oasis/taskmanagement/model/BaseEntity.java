@@ -4,12 +4,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
+@Data
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
     @Id
@@ -17,32 +19,8 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     @CreationTimestamp
-    private OffsetDateTime createdDate;
+    private OffsetDateTime createdAt;
 
     @UpdateTimestamp
-    private OffsetDateTime updatedDate;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public OffsetDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(OffsetDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public OffsetDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(OffsetDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
+    private OffsetDateTime updatedAt;
 }

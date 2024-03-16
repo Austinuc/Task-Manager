@@ -2,9 +2,13 @@ package com.oasis.taskmanagement.model;
 
 import com.oasis.taskmanagement.model.enums.ReminderStatus;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.OffsetDateTime;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 public class TaskReminder extends BaseEntity{
 
@@ -19,36 +23,4 @@ public class TaskReminder extends BaseEntity{
 
     @Column(nullable = false)
     private OffsetDateTime time;
-
-    public TaskEntity getTask() {
-        return task;
-    }
-
-    public void setTask(TaskEntity task) {
-        this.task = task;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public ReminderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ReminderStatus status) {
-        this.status = status;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public OffsetDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(OffsetDateTime time) {
-        this.time = time;
-    }
 }

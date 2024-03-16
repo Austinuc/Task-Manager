@@ -46,6 +46,9 @@ public class TaskServiceImpl implements TaskService {
 
         Optional<UserEntity> userEntity = userRepository.findById(userId);
         if (userEntity.isPresent()) {
+            if (taskRequestDto.getCategory() == null) {
+                taskRequestDto.setCategory("Uncategorized");
+            }
             TaskCategoryEntity categoryEntity = categoryRepository.findByName(taskRequestDto.getCategory())
                     .orElse(null);
 

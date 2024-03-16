@@ -2,7 +2,9 @@ package com.oasis.taskmanagement.dtos.requestDtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
+import lombok.Data;
 
+@Data
 public class UserUpdateRequest {
     private String firstName;
 
@@ -12,27 +14,4 @@ public class UserUpdateRequest {
     @Email
     private String email;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
